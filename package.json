@@ -1,0 +1,10 @@
+{
+ "name": "flowLeidySolarte", 
+ "version": "1.0.0",
+ "type": "module",
+ "description": "Primera aplicacion leidy Solarte Flow",
+ "scripts": {
+ "start": "node src/app.js",
+ "test": "node test/app.test.js"
+ }
+}
