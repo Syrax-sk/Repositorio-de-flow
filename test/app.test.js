@@ -3,7 +3,8 @@ import {
   despedir,
   estadoSistema,
   suma,
-  restar
+  restar,
+  healthCheck, 
 } from "../src/app.js";
 
 function ejecutarPruebas() {
@@ -46,11 +47,19 @@ function ejecutarPruebas() {
     fallidas++;
   }
 
+  const health = healthCheck();
+  if (health.status === "ok") {
+    console.log("Test 5 pasado: healthCheck() funciona correctamente");
+    pasadas++;
+  } else {
+    console.log("Test 5 fallido:", health);
+  }
+
   console.log(`\nResultados: ${pasadas} pasadas, ${fallidas} fallidas`);
 
   if (fallidas > 0) {
     process.exit(1);
   }
-}
+}jgjegjeogjerojge
 
 ejecutarPruebas();
