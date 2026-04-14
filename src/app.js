@@ -6,7 +6,9 @@ export function despedir(nombre) {
   return `Hasta pronto, ${nombre}. Leidy`;
 }
 
-export function estadoSistema() {
+
+
+{export function estadoSistema() {
   return {
     estado: "activo",
     version: "1.0.0",
@@ -20,4 +22,14 @@ export function suma(a, b) {
 
 export function restar(a, b) {
   return a - b;
+}
+
+export function healthCheck(){
+  return {
+  status: 'ok'
+  timestamp: new Date().toISOString(),
+  servicio: 'StreamFlow API',
+  version: '1.0.0'
+  }
+}
 }
