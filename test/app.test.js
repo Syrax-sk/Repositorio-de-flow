@@ -60,6 +60,6 @@ function ejecutarPruebas() {
   if (fallidas > 0) {
     process.exit(1);
   }
-}jgjegjeogjerojge
+}
 
 ejecutarPruebas();
