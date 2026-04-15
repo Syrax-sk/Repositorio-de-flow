@@ -1,3 +1,5 @@
+// Funciones principales
+
 export function saludar(nombre) {
   return `Hola ${nombre}, bienvenido a la aplicación de Leidy`;
 }
@@ -20,4 +22,28 @@ export function suma(a, b) {
 
 export function restar(a, b) {
   return a - b;
+}
+
+export function healthCheck() {
+  return {
+    status: "ok",
+    timestamp: new Date().toISOString(),
+    servicio: "StreamFlow API",
+    version: "1.0.0"
+  };
+}
+
+// Nueva función factorial
+export function factorial(n) {
+  if (n < 0) {
+    throw new Error("El factorial no está definido para números negativos");
+  }
+  if (n === 0 || n === 1) {
+    return 1;
+  }
+  let resultado = 1;
+  for (let i = 2; i <= n; i++) {
+    resultado *= i;
+  }
+  return resultado;
 }

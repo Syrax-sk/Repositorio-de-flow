@@ -3,7 +3,9 @@ import {
   despedir,
   estadoSistema,
   suma,
-  restar
+  restar,
+  healthCheck,
+  factorial,   // ✅ Importamos la nueva función
 } from "../src/app.js";
 
 function ejecutarPruebas() {
@@ -43,6 +45,24 @@ function ejecutarPruebas() {
     pasadas++;
   } else {
     console.log("Test 4 fallido:", r4);
+    fallidas++;
+  }
+
+  const health = healthCheck();
+  if (health.status === "ok") {
+    console.log("Test 5 pasado: healthCheck() funciona correctamente");
+    pasadas++;
+  } else {
+    console.log("Test 5 fallido:", health);
+    fallidas++;
+  }
+
+  const r6 = factorial(5);
+  if (r6 === 120) {
+    console.log("Test 6 pasado: factorial() funciona correctamente");
+    pasadas++;
+  } else {
+    console.log("Test 6 fallido:", r6);
     fallidas++;
   }
 
