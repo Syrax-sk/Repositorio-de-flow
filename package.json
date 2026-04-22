@@ -5,6 +5,7 @@
   "description": "Primera aplicacion leidy Solarte Flow",
   "scripts": {
     "start": "node src/app.js",
-    "test": "node test/app.test.js"
+    "test": "node test/app.test.js",
+    "build": "echo 'paso para omitir'"
   }
 }
