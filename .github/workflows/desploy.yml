@@ -1,0 +1,30 @@
+name: Deploy - Juliana despliegue
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Desplegar a producción
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar y probar
+        run: |
+          npm install
+          npm test
+
+      - name: Desplegar aplicación
+        run: |
+          echo "Iniciando despliegue de la aplicación Juliana v $(node -p \"require('./package.json').version\")"
+          echo "Sistema desplegado correctamente"
+          echo "URL: https://streamflow.example.com"
