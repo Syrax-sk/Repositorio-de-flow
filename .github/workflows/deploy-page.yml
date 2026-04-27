@@ -1,12 +1,14 @@
 name: Deploy para Sistema Leidy
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Deploy - StreamFlow"]
+    types:
+      - completed
 
 jobs:
   deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     permissions:
@@ -19,20 +21,24 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Descargar artifact del build
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: dist
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Subir a GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Show deployment URL
-        run: 'echo "Sitio en produccion: ${{ steps.deployment.outputs.page_url }}"'
+      - name: Mostrar URL
+        run: |
+          echo "🌐 Sitio en produccion: ${{ steps.deployment.outputs.page_url }}"
