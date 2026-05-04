@@ -30,28 +30,16 @@ jobs:
       - name: Ejecutar pruebas
         run: npm test
 
-      - name: Construir la aplicación
+      - name: (Opcional) Ejecutar build
         run: npm run build
 
-      - name: Mostrar información de versión
-        run: |
-          echo "Iniciando build de StreamFlow"
-          echo "Version: $(node -p 'require(\"./package.json\").version')"
-          echo "Rama: ${GITHUB_REF#refs/heads/}"
-          echo "Commit: ${GITHUB_SHA:0:7}"
-
-      # 🔍 DEBUG CLAVE
-      - name: Verificar archivos generados
+      - name: Verificar archivos del proyecto
         run: |
           echo "Contenido del proyecto:"
           ls -la
-          echo "Contenido de dist:"
-          ls -la dist || echo "⚠️ dist no existe"
 
-      # 🚀 SUBIDA SEGURA
-      - name: Subir artifact del build
+      - name: Subir artifact del proyecto
         uses: actions/upload-artifact@v4
         with:
           name: build
-          path: dist
-          if-no-files-found: error
+          path: .

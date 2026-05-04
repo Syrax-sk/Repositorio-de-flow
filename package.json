@@ -6,6 +6,6 @@
   "scripts": {
     "start": "node src/app.js",
     "test": "node test/app.test.js",
-    "build": "echo 'paso para omitir'"
+    "build": "echo 'sin build necesario'"
   }
 }
