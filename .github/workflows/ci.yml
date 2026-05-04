@@ -37,3 +37,13 @@ jobs:
 
       - name: Verificar sintaxis del código
         run: node --check src/app.js
+
+      # 👇 AQUÍ EMPIEZA LO IMPORTANTE
+      - name: Build del proyecto
+        run: npm run build
+
+      - name: Subir artifact del build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: dist

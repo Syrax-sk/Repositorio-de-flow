@@ -13,6 +13,7 @@ jobs:
 
     permissions:
       contents: read
+      actions: read   # 👈 ESTA LÍNEA ES CLAVE 🔥
       pages: write
       id-token: write
 
@@ -28,6 +29,9 @@ jobs:
           run_id: ${{ github.event.workflow_run.id }}
           name: build
           path: dist
+
+      - name: Verificar contenido descargado
+        run: ls -la dist   # 👈 DEBUG útil (puedes quitarlo luego)
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v4
