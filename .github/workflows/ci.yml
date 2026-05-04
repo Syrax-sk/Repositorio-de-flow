@@ -2,9 +2,13 @@ name: CI Pipeline - leidySolarte
 
 on:
   push:
-    branches: [main, develop]
+    branches: 
+      - main
+      - develop
   pull_request:
-    branches: [main, develop]
+    branches: 
+      - main
+      - develop
 
 jobs:
   test:
@@ -16,19 +20,20 @@ jobs:
         node-version: [20.x, 22.x]
 
     steps:
-      - name: checkout del código
+      - name: Checkout del código
         uses: actions/checkout@v4
              
-      - name: "Configurar Node.js ${{ matrix.node-version }}"
+      - name: Configurar Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with: 
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
-      - name: instalar dependencias
+      - name: Instalar dependencias
         run: npm ci          
 
       - name: Ejecutar pruebas
         run: npm test                 
 
-      - name: verificar sintaxis del código
+      - name: Verificar sintaxis del código
         run: node --check src/app.js
