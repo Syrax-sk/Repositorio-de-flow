@@ -21,12 +21,13 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Descargar artifact del build
-        uses: actions/download-artifact@v4
+      - name: Descargar artifact del workflow anterior
+        uses: dawidd6/action-download-artifact@v3
         with:
+          workflow: Deploy - StreamFlow
+          run_id: ${{ github.event.workflow_run.id }}
           name: build
           path: dist
-          run-id: ${{ github.event.workflow_run.id }}
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v4
@@ -40,6 +41,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      
       - name: Mostrar URL del sitio
-        run: echo "Sitio en producción: ${{ steps.deployment.outputs.page_url }}"
+        run: 'echo "Sitio en producción: ${{ steps.deployment.outputs.page_url }}"'
